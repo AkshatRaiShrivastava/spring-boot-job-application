@@ -1,32 +1,29 @@
-package com.akshat.FirstSpring.company;
+package com.akshat.FirstSpring.review;
 
-import java.util.List;
-
-import com.akshat.FirstSpring.job.Job;
+import com.akshat.FirstSpring.company.Company;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Company {
-    
+public class Review {
+    public Review() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String title;
     private String description;
+    private double rating;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "company")
-    private List<Job> jobs; 
-    // private List<Review> reviews;
-
-    public Company() {
-    }
+    @ManyToOne
+    private Company company;
 
     public Long getId() {
         return id;
@@ -36,12 +33,12 @@ public class Company {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -52,17 +49,12 @@ public class Company {
         this.description = description;
     }
 
-    public List<Job> getJobs() {
-        return jobs;
+    public double getRating() {
+        return rating;
     }
 
-    public void setJobs(List<Job> jobs) {
-        this.jobs = jobs;
+    public void setRating(double rating) {
+        this.rating = rating;
     }
-
-
-    
-
-
 
 }

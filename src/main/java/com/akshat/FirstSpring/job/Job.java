@@ -1,15 +1,16 @@
 package com.akshat.FirstSpring.job;
-
+import com.akshat.FirstSpring.company.Company;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
+
 
 @Entity
 // @Table(name = "job_table")
 public class Job {
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
@@ -18,9 +19,21 @@ public class Job {
     private String maxSalary;
     private String location;
 
-    public Job(){
-        
+    @ManyToOne
+    private Company company;
+
+    public Company getCompany() {
+        return company;
     }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Job() {
+
+    }
+
     public Job(Long id, String description, String title, String minSalary, String maxSalary, String location) {
         this.id = id;
         this.description = description;
