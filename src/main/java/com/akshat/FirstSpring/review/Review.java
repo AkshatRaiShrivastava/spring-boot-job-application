@@ -11,6 +11,19 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Review {
+    @JsonIgnore
+    @ManyToOne
+    private Company company;
+
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public Review() {
     }
 
@@ -21,9 +34,6 @@ public class Review {
     private String description;
     private double rating;
 
-    @JsonIgnore
-    @ManyToOne
-    private Company company;
 
     public Long getId() {
         return id;

@@ -3,6 +3,7 @@ package com.akshat.FirstSpring.company;
 import java.util.List;
 
 import com.akshat.FirstSpring.job.Job;
+import com.akshat.FirstSpring.review.Review;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -13,7 +14,7 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Company {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,8 +23,10 @@ public class Company {
 
     @JsonIgnore
     @OneToMany(mappedBy = "company")
-    private List<Job> jobs; 
-    // private List<Review> reviews;
+    private List<Job> jobs;
+
+    @OneToMany(mappedBy = "company")
+    private List<Review> reviews;
 
     public Company() {
     }
@@ -60,9 +63,12 @@ public class Company {
         this.jobs = jobs;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
 
-    
-
-
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
 }
